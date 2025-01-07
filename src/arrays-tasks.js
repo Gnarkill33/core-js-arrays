@@ -406,12 +406,9 @@ function generateOdds(len) {
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
 function getElementByIndices(arr, indices) {
-  let element;
-
-  for (let i = 0; i < indices.length; i + 1) {
-    const currentIndex = indices[i];
-    element = arr[currentIndex];
-  }
+  const element = indices.reduce((accumulator, currentIndex) => {
+    return accumulator[currentIndex];
+  }, arr);
   return element;
 }
 
