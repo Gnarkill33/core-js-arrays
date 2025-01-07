@@ -279,7 +279,7 @@ function distinct(arr) {
 }
 
 /**
- * Creates an n-dimensional array and fills it with zeros. ДОДЕЛАТЬ!!!
+ * Creates an n-dimensional array and fills it with zeros.
  *
  * @param {number} n - Depth of outter array (n > 0).
  * @param {number} size - Length of all arrays (size > 0).
@@ -291,8 +291,16 @@ function distinct(arr) {
  *    createNDimensionalArray(4, 2) => [[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
  *    createNDimensionalArray(1, 1) => [0]
  */
-function createNDimensionalArray(/* n, size */) {
-  throw new Error('Not implemented');
+function createNDimensionalArray(n, size) {
+  if (n === 1) {
+    return Array(size).fill(0);
+  }
+
+  const inDepthArray = Array(size)
+    .fill(null)
+    .map(() => createNDimensionalArray(n - 1, size));
+
+  return inDepthArray;
 }
 
 /**
@@ -397,8 +405,14 @@ function generateOdds(len) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices(/* arr, indices */) {
-  throw new Error('Not implemented');
+function getElementByIndices(arr, indices) {
+  let element;
+
+  for (let i = 0; i < indices.length; i + 1) {
+    const currentIndex = indices[i];
+    element = arr[currentIndex];
+  }
+  return element;
 }
 
 /**
